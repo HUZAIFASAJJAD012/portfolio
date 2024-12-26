@@ -5,14 +5,16 @@ import './App.css'
 import About from './pages/About'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import Contact from './pages/Contact'
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
    {/* <Navbar/> */}
-   <Hero/>
+   
   {/* <About/> */}
+  <Contact></Contact>
 
     </>
   )
