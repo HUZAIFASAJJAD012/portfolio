@@ -5,20 +5,19 @@ import { IoMdMenu } from "react-icons/io";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Function to toggle the menu visibility
+ 
   const toggleMenu = () => {
     setIsMenuOpen((prevState) => !prevState);
   };
 
   return (
     <div className='bg-[#0B0B0B] w-full h-[80px]'>
-      {/* Menu Icon (Visible only on small and medium screens) */}
+     
       <IoMdMenu
         className="text-4xl text-white cursor-pointer lg:hidden ml-auto"
-        onClick={toggleMenu} // Toggle the menu visibility when clicked
+        onClick={toggleMenu} 
       />
 
-      {/* Menu Items for Large Devices */}
       <ul className="hidden lg:flex lg:justify-end lg:p-4 lg:gap-14">
         <li><NavLink className='text-white font-medium text-xl'>About me</NavLink></li>
         <li><NavLink className='text-white font-medium text-xl'>Skills</NavLink></li>
@@ -28,7 +27,7 @@ const Navbar = () => {
         </button>
       </ul>
 
-      {/* Menu for Small and Medium Devices */}
+   
       <ul
         className={`${
           isMenuOpen ? "block" : "hidden"
