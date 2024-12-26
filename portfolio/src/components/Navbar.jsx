@@ -11,7 +11,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className='bg-[#0B0B0B] w-full h-[80px]'>
+    <div className='bg-[#0B0B0B] w-full h-[80px] '>
      
       <IoMdMenu
         className="text-4xl text-white cursor-pointer lg:hidden ml-auto"
