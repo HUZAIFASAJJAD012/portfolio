@@ -133,7 +133,7 @@ const Hero = () => {
           <p className="text-xl font-medium text-white">
             my name is Tomasz Gajda
           </p>
-          <p className="text-[40px] font-semibold text-white">
+          <p className="text-[35px] font-semibold text-white">
             I'M A DEVELOPER
           </p>
           <img src="/Images/log.png" alt="" />
