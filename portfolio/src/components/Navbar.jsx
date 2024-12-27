@@ -19,9 +19,9 @@ const Navbar = () => {
       />
 
       <ul className="hidden lg:flex lg:justify-end lg:p-4 lg:gap-14">
-        <li><NavLink className='text-white font-medium text-xl'>About me</NavLink></li>
-        <li><NavLink className='text-white font-medium text-xl'>Skills</NavLink></li>
-        <li><NavLink className='text-white font-medium text-xl'>Portfolio</NavLink></li>
+        <li><NavLink to='/about' className='text-white font-medium cursor-default text-xl'>About me</NavLink></li>
+        <li><NavLink to='/contact' className='text-white font-medium cursor-default text-xl'>Contact</NavLink></li>
+        <li><NavLink to='/' className='text-white font-medium cursor-default text-xl'>Portfolio</NavLink></li>
         <button className="rounded-full bg-white py-2 px-2 text-center font-medium text-lg shadow-lg hover:shadow-lg transition-all">
           Contact Me
         </button>
@@ -62,7 +62,7 @@ const Navbar = () => {
               e.target.style.cssText = '';
             }}
           >
-            Skills
+            Contact
           </NavLink>
         </li>
         <li>

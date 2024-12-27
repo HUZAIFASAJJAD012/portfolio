@@ -1,19 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 import About from './pages/About'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Footer from './components/Footer'
+import Contact from './pages/Contact'
+import {Routes,Route} from 'react-router-dom'
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-   {/* <Navbar/> */}
-   <Hero/>
-  <About/>
+  
+  <Routes>
+    <Route path='/' element ={ <>
+    <Hero/>
+    <About/>
+    <Contact/>
+   
+    </>}
+    />
+    <Route path='/about' element={<> <Navbar/> <About/></>}/>
+    <Route path='/contact' element={ <> <Navbar/><Contact/> </>}/>
+  </Routes>
   <Footer/>
     </>
   )

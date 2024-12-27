@@ -50,21 +50,21 @@ const Hero = () => {
           <div className="w-1/2 bg-[url('/Images/Rectangle.png')] bg-cover bg-center flex flex-col">
             <ul className="hidden md:flex md:justify-end md:p-4 md:gap-3 lg:gap-14">
               <li>
-                <NavLink className="text-white font-medium md:text-base text-xl">
+                <NavLink to='/about' className="text-white cursor-default font-medium md:text-sm lg:text-xl">
                   About me
                 </NavLink>
               </li>
               <li>
-                <NavLink className="text-white font-medium md:text-base text-xl">
-                  Skills
+                <NavLink to='/contact' className="text-white cursor-default font-medium md:text-sm lg:text-xl">
+                  Contact
                 </NavLink>
               </li>
               <li>
-                <NavLink className="text-white font-medium md:text-base text-xl">
+                <NavLink to='/' className="text-white cursor-default font-medium md:text-sm lg:text-xl">
                   Portfolio
                 </NavLink>
               </li>
-              <button className="rounded-full bg-white py-2 px-2 text-center font-medium md:text-base lg:text-lg shadow-lg hover:shadow-lg transition-all">
+              <button className="rounded-full bg-white py-2 px-2 text-center font-medium md:text-sm lg:text-lg shadow-lg hover:shadow-lg transition-all">
                 Contact Me
               </button>
             </ul>
@@ -108,17 +108,17 @@ const Hero = () => {
             } absolute top-full left-0 w-full bg-[#1d1d1d] flex gap-2 flex-col items-center p-4`}
           >
             <li>
-              <NavLink className="text-white font-medium text-xl">
+              <NavLink to='/about' className="text-white font-medium text-xl">
                 About me
               </NavLink>
             </li>
             <li>
-              <NavLink className="text-white font-medium text-xl">
-                Skills
+              <NavLink to='/contact' className="text-white font-medium text-xl">
+                Contact
               </NavLink>
             </li>
             <li>
-              <NavLink className="text-white font-medium text-xl">
+              <NavLink to='/' className="text-white font-medium text-xl">
                 Portfolio
               </NavLink>
             </li>
