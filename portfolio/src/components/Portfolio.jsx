@@ -31,8 +31,8 @@ const Portfolio = () => {
       </div>
 
       {/* Navigation Section */}
-      <div className="flex justify-center space-x-4 py-4 bg-customblack">
-        <ul className="flex text-white text-opacity-25 text-xs font-bold  border-opacity-25">
+      <div className="flex justify-center space-x-4 py-4 bg-customblack ">
+        <ul className="flex text-white text-opacity-25 text-xs font-bold  border-opacity-25  ">
           <li className="px-4 py-2 text-white opacity-100  border-white border-b-2">ALL</li>
           <li className="px-4 py-2 border-white border-b-2 border-opacity-25 " >CODED</li>
           <li className="px-4 py-2 border-white border-b-2 border-opacity-25">DESIGNED</li>
@@ -40,7 +40,7 @@ const Portfolio = () => {
       </div>
 
       {/* Card Section */}
-      <div className=" grid grid-cols-3 gap-0 w-full h-auto">
+      <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3   ">
         {Portfolioarray.map(Fetch)} {/* Correct usage of map */}
       </div>
 

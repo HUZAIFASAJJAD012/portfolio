@@ -9,11 +9,11 @@ const PortfolioCards=(props)=>{
         <div className="flex">
         
         <div
-  className="h-[280px] w-[450px] object-cover font-montserrat rounded-sm text-white  relative"
+  className="h-[280px] w-full object-cover font-montserrat rounded-sm text-white  relative"
   // style={{ backgroundImage: `url(${props.src})` }}
 >
                   <img src={props.src} alt="" className="inset-0 h-full w-full object-cover absolute" />
-                  <div className="items-center absolute  pt-20 " >
+                  <div className="absolute inset-0 flex flex-col justify-center items-center bg-black/50 text-white text-center" >
                           <ul className="text-white    justify-items-center mx-5 ">
                             <li className="text-xs  pt-5">{props.p1}</li>
                             <li className="text-2xl pt-2  font-bold  tracking-widest">{props.h1}</li>

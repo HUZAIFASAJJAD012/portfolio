@@ -6,6 +6,12 @@ export default {
   ],
   theme: {
     extend: {
+
+      screens: {
+        'xs': '480px', // Example: Add a custom breakpoint for extra small devices
+        'xxl': '1440px', // Example: Add a custom breakpoint for extra-large screens
+      },
+
       fontFamily: {
         montserrat: ['Montserrat', 'sans-serif'],
       },
