@@ -4,6 +4,7 @@ import Hero from './components/Hero'
 import Footer from './components/Footer'
 import Contact from './pages/Contact'
 import {Routes,Route} from 'react-router-dom'
+import Portfolio from './components/Portfolio'
 function App() {
 
   return (
@@ -12,6 +13,7 @@ function App() {
   <Routes>
     <Route path='/' element ={ <>
     <Hero/>
+    <Portfolio/>
     <About/>
     <Contact/>
    
@@ -19,6 +21,7 @@ function App() {
     />
     <Route path='/about' element={<> <Navbar/> <About/></>}/>
     <Route path='/contact' element={ <> <Navbar/><Contact/> </>}/>
+    <Route path='/portfolio' element={ <><Navbar/><Portfolio/> </>}/>
   </Routes>
   <Footer/>
     </>

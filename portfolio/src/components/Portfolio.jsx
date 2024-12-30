@@ -17,33 +17,37 @@ const Fetch = (val) => {
 
 const Portfolio = () => {
   return (
-    <div className="font-sans">
+    <div className="font-sans mb-9">
       {/* Header Section */}
       <div className="relative">
         <img
           src="src/assets/porfolio header.png" // Replace with your image
           alt="Header"
-          className="w-full h-64 object-cover"
+          className="w-full h-full object-cover"
         />
-        <h1 className="absolute inset-0 flex justify-center items-center text-black border-2 border-black tracking-widest text-3xl font-bold bg-black/20">
-          PORTFOLIO
-        </h1>
+        <div className="absolute inset-0 flex justify-center items-center text-black  tracking-widest text-xl font-semibold bg-black/20">
+          <h1 className="border-4  px-5 py-1 border-black">PORTFOLIO</h1>
+          </div>
       </div>
 
       {/* Navigation Section */}
-      <div className="flex justify-center space-x-4 py-4 bg-customblack">
-        <ul className="flex text-white text-opacity-25 font-bold border-b-2 border-white border-opacity-25">
-          <li className="px-4 py-2">ALL</li>
-          <li className="px-4 py-2">CODED</li>
-          <li className="px-4 py-2">DESIGNED</li>
+      <div className="flex justify-center space-x-4 py-4 bg-customblack ">
+        <ul className="flex text-white text-opacity-25 text-xs font-bold  border-opacity-25  ">
+          <li className="px-4 py-2 text-white opacity-100  border-white border-b-2">ALL</li>
+          <li className="px-4 py-2 border-white border-b-2 border-opacity-25 " >CODED</li>
+          <li className="px-4 py-2 border-white border-b-2 border-opacity-25">DESIGNED</li>
         </ul>
       </div>
 
       {/* Card Section */}
-      <div>
+      <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3   ">
         {Portfolioarray.map(Fetch)} {/* Correct usage of map */}
       </div>
-    </div>
+
+      <div className="bg-customblack w-full h-[40px]  ">
+        <h1 className=" text-white py-2 font-semibold text-center font-montserrat ">And many more to come!</h1>
+      </div>
+    </div> 
   );
 };
 

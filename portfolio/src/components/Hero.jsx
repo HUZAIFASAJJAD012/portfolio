@@ -50,23 +50,25 @@ const Hero = () => {
           <div className="w-1/2 bg-[url('/Images/Rectangle.png')] bg-cover bg-center flex flex-col">
             <ul className="hidden md:flex md:justify-end md:p-4 md:gap-3 lg:gap-14">
               <li>
+                <NavLink to='/' className="text-white cursor-default font-medium md:text-sm lg:text-xl">
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to='/portfolio' className="text-white cursor-default font-medium md:text-sm lg:text-xl">
+                  Portfolio
+                </NavLink>
+              </li>
+              <li>
                 <NavLink to='/about' className="text-white cursor-default font-medium md:text-sm lg:text-xl">
                   About me
                 </NavLink>
               </li>
               <li>
                 <NavLink to='/contact' className="text-white cursor-default font-medium md:text-sm lg:text-xl">
-                  Contact
+                  Contact Us
                 </NavLink>
               </li>
-              <li>
-                <NavLink to='/' className="text-white cursor-default font-medium md:text-sm lg:text-xl">
-                  Portfolio
-                </NavLink>
-              </li>
-              <button className="rounded-full bg-white py-2 px-2 text-center font-medium md:text-sm lg:text-lg shadow-lg hover:shadow-lg transition-all">
-                Contact Me
-              </button>
             </ul>
             <div>
               <img
