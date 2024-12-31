@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { IoMdMenu } from "react-icons/io";
@@ -168,3 +169,18 @@ const Hero = () => {
 };
 
 export default Hero;
+=======
+import React from 'react'
+
+const Hero = () => {
+  return (
+    <div>
+      <div className=''>
+
+      </div>
+    </div>
+  )
+}
+
+export default Hero
+>>>>>>> Stashed changes

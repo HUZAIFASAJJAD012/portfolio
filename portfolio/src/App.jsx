@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import About from './pages/About'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -24,6 +25,18 @@ function App() {
     <Route path='/portfolio' element={ <><Navbar/><Portfolio/> </>}/>
   </Routes>
   <Footer/>
+=======
+import Navbar from './components/Navbar'
+import Navbar2 from './components/Navbar2'
+
+
+function App() {
+ 
+  return (
+    <>
+      <Navbar/>
+      <Navbar2/>
+>>>>>>> Stashed changes
     </>
   )
 }
