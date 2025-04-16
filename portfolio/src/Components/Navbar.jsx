@@ -8,16 +8,16 @@ const NavBar = () => {
       <nav className="max-w-7xl mx-auto py-6 px-6 lg:px-32  flex justify-between items-center text-white">
         <a
           href="#"
-          className="text-xl font-bold md:text-3xl  bg-gradient-to-r from-indigo-300 via-sky-100 to-indigo-300 text-transparent 
+          className="text-xl font-extrabold  md:text-3xl p-2  bg-gradient-to-r from-indigo-300 via-sky-100 to-indigo-300 text-transparent 
 bg-clip-text hover:scale-110 transition-all duration-300"
         >
           {" "}
-          Work with Huzaifa
+          LogiNest
         </a>
 
         <ul className="hidden md:flex space-x-8 text-lg font-medium">
-          <li className="opacity-70 hover:opacity-100 transition-opacity duration-300">
-            <a href="#about" className="">
+          <li className="opacity-70 hover:opacity-100  transition-opacity duration-300">
+            <a href="#about" className=" ">
               {" "}
               Home
             </a>

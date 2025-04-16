@@ -26,15 +26,13 @@ const AboutUs = () => {
           className="flex flex-col items-center md:items-start text-center md:text-left gap-4 md:gap-6 max-w-xl"
         >
          
-          <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-200 via-sky-300 to-blue-300 text-transparent bg-clip-text">
+          <h1 className="text-2xl md:text-3xl lg:text-5xl p-2 font-bold bg-gradient-to-r from-blue-200 via-sky-300 to-blue-300 text-transparent bg-clip-text">
             Huzaifa Sajjad
           </h1>
-          <p className="text-sm md:text-base lg:text-lg text-slate-400">
-            I am a passionate web developer with a keen interest in creating
-            dynamic and responsive web applications. My journey in web
-            development has been fueled by a desire to learn and grow, and I am
-            excited to take on new challenges in this ever-evolving field.
-          </p>
+          <p className="text-sm md:text-base lg:text-lg text-white">
+          I’m Huzaifa Sajjad, the Founder and CEO of LogiNest a software company driven by innovation, precision, and results. With over 2 years of real-world experience working with startups, agencies, and corporate clients, I specialize in building scalable, high-performance web and mobile applications.
+
+Throughout my journey, I’ve successfully delivered 100+ modern digital solutions, blending technical expertise with a deep understanding of user experience and business goals. At LogiNest, I lead a passionate team focused on transforming ideas into impactful digital products that help brands grow and thrive in today’s tech-driven world. </p>
           <div className="flex gap-6 mt-2">
             <a
               href="https://github.com/huzaifasajjad012"

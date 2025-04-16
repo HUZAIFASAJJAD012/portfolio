@@ -3,7 +3,7 @@ import ContectUs from "./Components/ContectUs"
 import Footer from "./Components/Footer"
 import Team from "./Components/Hero"
 import NavBar from "./Components/Navbar"
-import Project from "./Components/Project"
+import ProjectCard from "./Components/Project"
 
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
     <NavBar/>
     <AboutUs/>
     <Team/>
-    <Project/>
+    <ProjectCard/>
     
     <ContectUs/>
     <Footer/>
