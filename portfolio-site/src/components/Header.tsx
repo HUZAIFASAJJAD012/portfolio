@@ -119,11 +119,11 @@ const Header = () => {
               />
             </span>
             <motion.span 
-              className="ml-1 text-sm bg-primary text-white px-2 py-0.5 rounded-md"
+              className="ml-1  bg-primary text-white px-2 py-0.5 rounded-md"
               animate={{ y: [0, -5, 0] }}
               transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
             >
-              v2.0
+              LogiNest
             </motion.span>
           </a>
         </motion.div>
