@@ -39,7 +39,7 @@ const Hero = () => {
       x: mousePosition.x - 30,
       y: mousePosition.y - 30,
       backgroundColor: "rgba(107, 33, 168, 0.5)",
-      mixBlendMode: "difference",
+  mixBlendMode: "difference" as any,
       transition: {
         type: 'spring',
         mass: 0.6
