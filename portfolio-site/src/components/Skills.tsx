@@ -1,14 +1,14 @@
 "use client";
 
 
-import { useState } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { SiHtml5, SiJavascript, SiReact, SiNextdotjs, SiTailwindcss, SiFramer, SiNodedotjs, SiExpress, SiMongodb, SiPostgresql, SiGraphql, SiApollographql, SiGithub, SiDocker, SiTypescript, SiJest, SiFigma, SiCss3, SiAmazon } from 'react-icons/si';
 
 const Skills = () => {
   const [ref, inView] = useInView({
-    triggerOnce: false,
+    triggerOnce: true,
     threshold: 0.2
   });
   
@@ -78,18 +78,18 @@ const Skills = () => {
     }
   ];
   
-  // Animation variants
-  const containerVariants = {
+  // Memoized animation variants for better performance
+  const containerVariants = useMemo(() => ({
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.15,
       }
     }
-  };
+  }), []);
   
-  const itemVariants = {
+  const itemVariants = useMemo(() => ({
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
@@ -98,19 +98,19 @@ const Skills = () => {
         duration: 0.5
       }
     }
-  };
+  }), []);
   
-  const barVariants = {
+  const barVariants = useMemo(() => ({
     hidden: { width: 0, opacity: 0 },
     visible: (level: number) => ({
       width: `${level}%`,
       opacity: 1,
       transition: {
-        duration: 1,
-        ease: "easeInOut"
+        duration: 0.8,
+        ease: "easeOut"
       }
     })
-  };
+  }), []);
 
   return (
   <section id="skills" className="py-20 relative overflow-hidden">
