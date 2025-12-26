@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import Link from 'next/link';
 
 // Define project type
 interface ProjectType {
@@ -32,6 +33,12 @@ const Projects = () => {
   const [isGridView, setIsGridView] = useState(true);
   const modalRef = useRef<HTMLDivElement>(null);
   
+  // Optimized modal close handler
+  const closeModal = useCallback(() => {
+    setSelectedProject(null);
+    document.body.style.overflow = 'auto';
+  }, []);
+  
   // Close modal when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -47,7 +54,7 @@ const Projects = () => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [selectedProject]);
+  }, [selectedProject, closeModal]);
   
   // Handle ESC key to close modal
   useEffect(() => {
@@ -67,167 +74,107 @@ const Projects = () => {
   const projects: ProjectType[] = [
     {
       id: 1,
-      title: "E-commerce Platform",
-      description: "A full-featured online store with product catalog, cart, checkout and payment integration.",
-      image: "/projects/ecommerce.jpg",
+      title: "Zyra Auctions - Real-Time Bidding Platform",
+      description: "NestJS real-time auction e-commerce website with Next.js frontend, payment integration, and multi-vendor support.",
+      image: "/project/zyra.png",
       category: "fullstack",
-      technologies: ["Next.js", "MongoDB", "Stripe", "Tailwind CSS"],
-      demoLink: "https://example.com",
-      codeLink: "https://github.com/yourusername/ecommerce",
-      longDescription: "This comprehensive e-commerce solution features user authentication, product management, cart functionality, secure checkout with Stripe, order history, and an admin dashboard. The platform is built with performance and SEO in mind, utilizing Next.js for server-side rendering and optimized image loading.",
+      technologies: ["Next.js", "NestJS", "WebSocket", "Payment Gateway", "Multi-Vendor"],
+      demoLink: "https://zyraauctions.com/auctions",
+      codeLink: "#",
+      longDescription: "A sophisticated real-time auction platform built with NestJS backend and Next.js frontend. The platform features live bidding functionality using WebSocket for real-time updates, secure payment integration, and comprehensive multi-vendor support allowing multiple sellers to manage their auction listings.",
       features: [
-        "User authentication and profiles",
-        "Product search with filters and sorting",
-        "Cart and wishlist functionality",
-        "Secure payment processing",
-        "Order tracking system",
-        "Admin dashboard for inventory management"
+        "Real-time bidding with WebSocket",
+        "Multi-vendor marketplace",
+        "Secure payment integration",
+        "NestJS backend for scalability",
+        "Next.js frontend for performance",
+        "Auction management system",
+        "Live bid notifications",
+        "Vendor dashboard"
       ],
-      completedAt: "2023-07-15"
+      completedAt: "2024-10-15"
     },
     {
       id: 2,
-      title: "Task Management App",
-      description: "A productive task manager with drag-and-drop interface and team collaboration features.",
-      image: "/projects/task-app.jpg",
-      category: "frontend",
-      technologies: ["React", "Redux", "Firebase", "Material UI"],
-      demoLink: "https://example.com",
-      codeLink: "https://github.com/yourusername/task-app",
-      longDescription: "This intuitive task management application helps teams organize work efficiently with features like kanban boards, task assignments, due dates, and real-time updates. The app uses Redux for state management and Firebase for real-time data synchronization.",
+      title: "LinksBuy - Affiliate E-commerce Platform",
+      description: "Full-stack affiliate links e-commerce website with 7000+ products and 3000+ active users.",
+      image: "/project/linksbuy.png",
+      category: "fullstack",
+      technologies: ["Next.js", "NestJS", "PostgreSQL", "SEO", "TypeScript"],
+      demoLink: "https://linksbuy.xyz/newproduct",
+      codeLink: "#",
+      longDescription: "A comprehensive affiliate e-commerce platform built with modern technologies. The platform features a powerful NestJS backend with PostgreSQL database managing 7000+ products uploaded by clients. The frontend is built with Next.js for optimal SEO performance, serving 3000+ active users with a seamless shopping experience.",
       features: [
-        "Kanban board with drag-and-drop",
-        "Task assignments and mentions",
-        "Due date reminders",
-        "File attachments",
-        "Team chat and comments",
-        "Activity timeline"
+        "7000+ products managed by clients",
+        "3000+ active users",
+        "NestJS backend with PostgreSQL",
+        "Next.js frontend with SEO optimization",
+        "Client product upload management",
+        "Affiliate link system",
+        "Admin dashboard for product management"
       ],
-      completedAt: "2023-05-20"
+      completedAt: "2024-11-20"
     },
     {
       id: 3,
-      title: "Personal Blog Platform",
-      description: "A content management system for bloggers with markdown support and SEO features.",
-      image: "/projects/blog.jpg",
-      category: "fullstack",
-      technologies: ["Next.js", "PostgreSQL", "GraphQL", "Tailwind CSS"],
-      demoLink: "https://example.com",
-      codeLink: "https://github.com/yourusername/blog-platform",
-      longDescription: "This modern blogging platform allows writers to create and manage content with a rich text editor, SEO tools, and analytics. The platform features server-side rendering for optimal performance and search engine visibility, along with a GraphQL API for flexible data querying.",
-      features: [
-        "Markdown and rich text editing",
-        "SEO optimization tools",
-        "Social media integration",
-        "Content scheduling",
-        "Reader comments and reactions",
-        "Traffic analytics dashboard"
-      ],
-      completedAt: "2023-03-10"
-    },
-    {
-      id: 4,
-      title: "Weather Dashboard",
-      description: "Real-time weather tracking with interactive maps and 7-day forecasts.",
-      image: "/projects/weather.jpg",
+      title: "SFS - Financial Services B.V.",
+      description: "Your trusted partner for Dutch bookkeeping, tax advisory, and business solutions in the Netherlands.",
+      image: "/project/sfs.png",
       category: "frontend",
-      technologies: ["React", "OpenWeather API", "Chart.js", "Styled Components"],
-      demoLink: "https://example.com",
-      codeLink: "https://github.com/yourusername/weather-app",
-      longDescription: "This weather application provides accurate forecasts with interactive visualizations, location-based weather updates, and severe weather alerts. The dashboard features responsive design and dark mode support for optimal viewing in any environment.",
+      technologies: ["Next.js", "React", "Tailwind CSS", "SEO", "TypeScript"],
+      demoLink: "https://sfs-website-3g5s.vercel.app/",
+      codeLink: "#",
+      longDescription: "A professional business website for Financial Services B.V. (SFS) providing comprehensive financial services to businesses in the Netherlands. Built with Next.js for optimal SEO and performance, the website showcases their services including Dutch bookkeeping, tax advisory, and business solutions, helping clients achieve compliance, growth, and peace of mind.",
       features: [
-        "Current conditions and 7-day forecast",
-        "Hourly weather breakdown",
-        "Interactive weather maps",
-        "Location-based recommendations",
-        "Weather alerts and notifications",
-        "Historical weather data comparison"
+        "Professional service showcase",
+        "Next.js for SEO optimization",
+        "Responsive design for all devices",
+        "Contact and inquiry forms",
+        "Service details and pricing",
+        "SEO optimized for Dutch market"
       ],
-      completedAt: "2023-01-25"
-    },
-    {
-      id: 5,
-      title: "RESTful API Service",
-      description: "A complete backend solution for managing user data with authentication and authorization.",
-      image: "/projects/api.jpg",
-      category: "backend",
-      technologies: ["Node.js", "Express", "MongoDB", "JWT"],
-      demoLink: "https://example.com",
-      codeLink: "https://github.com/yourusername/api-service",
-      longDescription: "This robust API service provides a secure and scalable backend infrastructure for user management, data processing, and third-party integrations. The service implements JWT authentication, role-based access control, and comprehensive API documentation.",
-      features: [
-        "JWT authentication and authorization",
-        "Role-based access control",
-        "Rate limiting and request throttling",
-        "Comprehensive error handling",
-        "Swagger API documentation",
-        "Automated testing with Jest"
-      ],
-      completedAt: "2023-02-18"
-    },
-    {
-      id: 6,
-      title: "Real-time Chat Application",
-      description: "Feature-rich messaging platform with rooms, direct messages, and file sharing.",
-      image: "/projects/chat.jpg",
-      category: "fullstack",
-      technologies: ["React", "Socket.io", "Express", "MongoDB"],
-      demoLink: "https://example.com",
-      codeLink: "https://github.com/yourusername/chat-app",
-      longDescription: "This real-time messaging application enables seamless communication with features like instant messaging, group chats, file sharing, and message history. The app utilizes Socket.io for real-time functionality and includes features like typing indicators and read receipts.",
-      features: [
-        "Real-time messaging",
-        "Group chats and channels",
-        "File and media sharing",
-        "Message reactions and threads",
-        "Typing indicators and read receipts",
-        "Online presence indicators"
-      ],
-      completedAt: "2023-04-05"
+      completedAt: "2024-12-10"
     }
   ] as ProjectType[];
 
-  // Filter categories with icon indicators
+  // Filter categories
   const filters = [
-    { name: "All", value: "all", icon: "🔍" },
-    { name: "Frontend", value: "frontend", icon: "🎨" },
-    { name: "Backend", value: "backend", icon: "⚙️" },
-    { name: "Full Stack", value: "fullstack", icon: "🚀" }
+    { name: "All", value: "all" },
+    { name: "Frontend", value: "frontend" },
+    { name: "Backend", value: "backend" },
+    { name: "Full Stack", value: "fullstack" }
   ];
   
-  // Filter and search projects
-  const filteredProjects = projects
-    .filter(project => activeFilter === 'all' || project.category === activeFilter)
-    .filter(project => 
-      searchQuery === '' || 
-      project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      project.technologies.some(tech => tech.toLowerCase().includes(searchQuery.toLowerCase()))
-    );
+  // Memoized filter and search projects - prevents recalculation on every render
+  const filteredProjects = useMemo(() => {
+    return projects
+      .filter(project => activeFilter === 'all' || project.category === activeFilter)
+      .filter(project => 
+        searchQuery === '' || 
+        project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        project.technologies.some(tech => tech.toLowerCase().includes(searchQuery.toLowerCase()))
+      );
+  }, [activeFilter, searchQuery]);
   
-  // Open and close modal functions
-  const openModal = (project: ProjectType) => {
+  // Open modal function
+  const openModal = useCallback((project: ProjectType) => {
     setSelectedProject(project);
     document.body.style.overflow = 'hidden'; // Prevent background scrolling
-  };
+  }, []);
   
-  const closeModal = () => {
-    setSelectedProject(null);
-    document.body.style.overflow = 'auto'; // Restore scrolling
-  };
-  
-  // Animation variants
-  const containerVariants = {
+  // Animation variants - memoized
+  const containerVariants = useMemo(() => ({
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
+        staggerChildren: 0.15
       }
     }
-  };
+  }), []);
   
-  const itemVariants = {
+  const itemVariants = useMemo(() => ({
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
@@ -236,9 +183,9 @@ const Projects = () => {
         duration: 0.5
       }
     }
-  };
+  }), []);
   
-  const modalVariants = {
+  const modalVariants = useMemo(() => ({
     hidden: { opacity: 0, scale: 0.8 },
     visible: { 
       opacity: 1, 
@@ -255,7 +202,7 @@ const Projects = () => {
         duration: 0.2
       }
     }
-  };
+  }), []);
 
   return (
     <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-900">
@@ -271,7 +218,7 @@ const Projects = () => {
             className="section-heading gradient-text" 
             variants={itemVariants}
           >
-            My Projects
+            Our Projects
           </motion.h2>
           
           <motion.p 
@@ -363,7 +310,6 @@ const Projects = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <span>{filter.icon}</span>
                   <span>{filter.name}</span>
                   {activeFilter === filter.value && (
                     <motion.span
@@ -431,17 +377,6 @@ const Projects = () => {
                               <line x1="10" y1="14" x2="21" y2="3"></line>
                             </svg>
                           </a>
-                          <a 
-                            href={project.codeLink} 
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-white hover:text-primary bg-black/30 hover:bg-black/50 p-2 rounded-full transition-colors"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                            </svg>
-                          </a>
                         </div>
                       </div>
                     </div>
@@ -458,16 +393,8 @@ const Projects = () => {
                     </div>
                   </div>
                   <div className="p-6">
-                    <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
+                    <h3 className="text-xl font-bold mb-2">
                       {project.title}
-                      <motion.span
-                        className="inline-block"
-                        whileHover={{ rotate: 15 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                      >
-                        {project.category === 'frontend' ? '🎨' :
-                         project.category === 'backend' ? '⚙️' : '🚀'}
-                      </motion.span>
                     </h3>
                     <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">{project.description}</p>
                     <div className="flex flex-wrap gap-2">
@@ -538,16 +465,8 @@ const Projects = () => {
                       </div>
                     </div>
                     <div className="p-6 flex-1">
-                      <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
+                      <h3 className="text-xl font-bold mb-2">
                         {project.title}
-                        <motion.span
-                          className="inline-block"
-                          whileHover={{ rotate: 15 }}
-                          transition={{ type: "spring", stiffness: 300 }}
-                        >
-                          {project.category === 'frontend' ? '🎨' :
-                           project.category === 'backend' ? '⚙️' : '🚀'}
-                        </motion.span>
                       </h3>
                       <p className="text-gray-600 dark:text-gray-400 mb-4">{project.description}</p>
                       <div className="flex flex-wrap gap-2 mb-4">
@@ -587,17 +506,6 @@ const Projects = () => {
                               <line x1="10" y1="14" x2="21" y2="3"></line>
                             </svg>
                           </a>
-                          <a 
-                            href={project.codeLink} 
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-gray-600 hover:text-primary transition-colors p-2"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                            </svg>
-                          </a>
                         </div>
                       </div>
                     </div>
@@ -613,7 +521,6 @@ const Projects = () => {
               className="text-center py-16"
               variants={itemVariants}
             >
-              <div className="text-6xl mb-4">🔍</div>
               <h3 className="text-xl font-medium mb-2">No projects found</h3>
               <p className="text-gray-500 dark:text-gray-400">
                 Try adjusting your search or filter to find what you're looking for.
@@ -636,16 +543,18 @@ const Projects = () => {
               className="text-center mt-16"
               variants={itemVariants}
             >
-              <motion.button
-                className="btn-secondary inline-flex items-center"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                View All Projects
-                <svg className="ml-2 w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </motion.button>
+              <Link href="/projects">
+                <motion.button
+                  className="btn-secondary inline-flex items-center gap-2 px-8 py-4 text-lg font-medium bg-gradient-to-r from-primary to-secondary text-white rounded-xl hover:shadow-2xl transition-all"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  View All Projects
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </motion.button>
+              </Link>
             </motion.div>
           )}
         </motion.div>
@@ -765,17 +674,6 @@ const Projects = () => {
                       <line x1="10" y1="14" x2="21" y2="3"></line>
                     </svg>
                     Live Demo
-                  </a>
-                  <a 
-                    href={selectedProject.codeLink} 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                    </svg>
-                    View Code
                   </a>
                 </div>
               </div>

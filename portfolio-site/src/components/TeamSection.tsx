@@ -4,35 +4,52 @@ interface TeamMember {
   name: string;
   role: string;
   image: string;
+  experience?: string;
 }
 
 const teamMembers: TeamMember[] = [
   {
-    name: "Alice Johnson",
-    role: "Frontend Developer",
-    image: "/team/alice.jpg"
+    name: "Saad Mustafa",
+    role: "Full Stack Developer",
+    image: "/saad.png",
+    experience: "2 years"
   },
   {
-    name: "Bob Smith",
+    name: "Fahad Farman",
+    role: "Full Stack Developer",
+    image: "/fahad.png",
+    experience: "1.5 years"
+  },
+  {
+    name: "Syed Hassam",
+    role: "Full Stack Developer",
+    image: "/syedhassam.png",
+    experience: "1.3 years"
+  },
+  {
+    name: "M Saeed Siddiqui",
+    role: "Full Stack Developer",
+    image: "/sayeed.png",
+    experience: "2 years"
+  },
+  {
+    name: "Ansar Sultan",
+    role: "Full Stack Developer",
+    image: "/anser.png",
+    experience: "2+ years"
+  },
+  {
+    name: "Waleed Khan",
     role: "Backend Developer",
-    image: "/team/bob.jpg"
-  },
-  {
-    name: "Carol Lee",
-    role: "UI/UX Designer",
-    image: "/team/carol.jpg"
-  },
-  {
-    name: "David Kim",
-    role: "DevOps Engineer",
-    image: "/team/david.jpg"
+    image: "/project/waleed.png",
+    experience: "3+ years"
   }
 ];
 
 const mainMember = {
-  name: "Project Lead",
+  name: "Mubarak Ali",
   role: "Team Lead",
-  image: "/team/lead.jpg"
+  image: "/mubarak.png"
 };
 
 const TeamSection: React.FC = () => {
@@ -55,10 +72,13 @@ const TeamSection: React.FC = () => {
               <img
                 src={member.image}
                 alt={member.name}
-                className="w-24 h-24 rounded-full object-cover border-2 border-primary shadow mb-2"
+                className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-primary shadow-lg mb-3"
               />
-              <h4 className="font-medium">{member.name}</h4>
-              <p className="text-xs text-gray-500 dark:text-gray-400">{member.role}</p>
+              <h4 className="font-medium text-lg">{member.name}</h4>
+              <p className="text-sm text-gray-500 dark:text-gray-400">{member.role}</p>
+              {member.experience && (
+                <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">{member.experience} experience</p>
+              )}
             </div>
           ))}
         </div>

@@ -1,7 +1,7 @@
 "use client";
 
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import DarkModeToggle from './DarkModeToggle';
 
@@ -12,40 +12,61 @@ const Header = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   
+  // Optimized scroll handler with throttling
+  const handleScroll = useCallback(() => {
+    const scrollY = window.scrollY;
+    
+    // Background change based on scroll position
+    setIsScrolled(scrollY > 50);
+    
+    // Calculate scroll progress for the progress bar
+    const totalHeight = document.body.scrollHeight - window.innerHeight;
+    const progress = (scrollY / totalHeight) * 100;
+    setScrollProgress(progress);
+    
+    // Update active section based on scroll position - optimized
+    const sections = ['contact', 'projects', 'skills', 'about', 'hero'];
+    for (const section of sections) {
+      const element = document.getElementById(section);
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        if (rect.top <= 100) {
+          setActiveSection(section);
+          break;
+        }
+      }
+    }
+  }, []);
+  
   // Handle navbar background change on scroll and calculate scroll progress
   useEffect(() => {
-    const handleScroll = () => {
-      // Background change based on scroll position
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
+    let rafId: number;
+    let lastScrollY = 0;
+    
+    const throttledScroll = () => {
+      const currentScrollY = window.scrollY;
+      // Only update if scroll changed significantly (> 5px)
+      if (Math.abs(currentScrollY - lastScrollY) > 5) {
+        handleScroll();
+        lastScrollY = currentScrollY;
       }
-      
-      // Calculate scroll progress for the progress bar
-      const totalHeight = document.body.scrollHeight - window.innerHeight;
-      const progress = (window.scrollY / totalHeight) * 100;
-      setScrollProgress(progress);
-      
-      // Update active section based on scroll position
-      const sections = ['hero', 'about', 'skills', 'projects', 'contact'];
-      for (const section of sections.reverse()) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100) {
-            setActiveSection(section);
-            break;
-          }
-        }
+      rafId = 0;
+    };
+    
+    const onScroll = () => {
+      if (!rafId) {
+        rafId = requestAnimationFrame(throttledScroll);
       }
     };
     
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    handleScroll(); // Initial call
+    
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', onScroll);
+      if (rafId) cancelAnimationFrame(rafId);
     };
-  }, []);
+  }, [handleScroll]);
   
   // Initialize dark mode from system preference or localStorage
   useEffect(() => {
@@ -76,11 +97,12 @@ const Header = () => {
 
   // Navigation items
   const navItems = [
-    { name: 'Home', href: '#hero', icon: '🏠' },
-    { name: 'About', href: '#about', icon: '👨‍💻' },
-    { name: 'Skills', href: '#skills', icon: '🛠️' },
-    { name: 'Projects', href: '#projects', icon: '🚀' },
-    { name: 'Contact', href: '#contact', icon: '📧' },
+    { name: 'Home', href: '#hero' },
+    { name: 'About', href: '#about' },
+    { name: 'Products', href: '#products' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'All Projects', href: '/projects', isExternal: true },
+    { name: 'Contact', href: '#contact' },
   ];
 
   return (
@@ -140,16 +162,20 @@ const Header = () => {
               >
                 <a 
                   href={item.href}
-                  className={`font-medium transition-colors duration-300 px-3 py-2 rounded-lg flex items-center space-x-1
+                  className={`font-medium transition-colors duration-300 px-3 py-2 rounded-lg flex items-center
                     ${activeSection === item.href.substring(1) 
                       ? 'text-primary dark:text-primary bg-primary/5' 
                       : 'hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-800/60'}`
                   }
                 >
-                  <span className="hidden sm:inline text-sm">{item.icon}</span>
                   <span>{item.name}</span>
+                  {item.isExternal && (
+                    <svg className="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  )}
                 </a>
-                {activeSection === item.href.substring(1) && (
+                {activeSection === item.href.substring(1) && !item.isExternal && (
                   <motion.div 
                     layoutId="activeNavIndicator"
                     className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary mx-3 rounded-full"
@@ -208,19 +234,23 @@ const Header = () => {
                 <motion.li 
                   key={item.name}
                   className={`mx-4 my-2 rounded-lg overflow-hidden ${
-                    activeSection === item.href.substring(1) ? 'bg-primary/10' : ''
+                    activeSection === item.href.substring(1) && !item.isExternal ? 'bg-primary/10' : ''
                   }`}
                   whileHover={{ backgroundColor: 'rgba(107, 33, 168, 0.1)' }}
                   whileTap={{ scale: 0.98 }}
                 >
                   <a 
                     href={item.href}
-                    className="py-3 px-6 font-medium flex items-center space-x-3"
+                    className="py-3 px-6 font-medium flex items-center"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <span className="text-xl">{item.icon}</span>
                     <span>{item.name}</span>
-                    {activeSection === item.href.substring(1) && (
+                    {item.isExternal && (
+                      <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    )}
+                    {activeSection === item.href.substring(1) && !item.isExternal && (
                       <motion.span
                         layoutId="mobileActiveIndicator"
                         className="ml-auto w-1.5 h-6 bg-primary rounded-full"

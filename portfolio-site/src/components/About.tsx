@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import TeamSection from './TeamSection';
@@ -14,18 +14,18 @@ const About = () => {
   // State to track active tab
   const [activeTab, setActiveTab] = useState('story');
 
-  // Animation variants
-  const containerVariants = {
+  // Memoized animation variants
+  const containerVariants = useMemo(() => ({
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
+        staggerChildren: 0.15
       }
     }
-  };
+  }), []);
 
-  const itemVariants = {
+  const itemVariants = useMemo(() => ({
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
@@ -34,86 +34,86 @@ const About = () => {
         duration: 0.5
       }
     }
-  };
+  }), []);
   
   // Personal details and milestones
   const personalDetails = [
-    { label: "Name", value: "Your Name" },
-    { label: "Age", value: "28 Years" },
-    { label: "Nationality", value: "American" },
-    { label: "Languages", value: "English, Spanish" },
-    { label: "Location", value: "New York, USA" },
-    { label: "Freelance", value: "Available" }
+    { label: "Name", value: "Huzaifa Sajjad" },
+    { label: "Role", value: "CEO & Team Lead" },
+    { label: "Company", value: "LogiNest" },
+    { label: "Experience", value: "3+ Years" },
+    { label: "Location", value: "Pakistan" },
+    { label: "Available", value: "Yes" }
   ];
   
   // Career milestones
   const milestones = [
     {
-      year: "2023",
-      position: "Senior Full Stack Developer",
-      company: "Tech Innovations Inc.",
-      description: "Lead developer for enterprise web applications focusing on performance optimization and scalability."
+      year: "2024 - Present",
+      position: "CEO & Founder",
+      company: "LogiNest Software House",
+      description: "Leading a talented team to build custom software solutions. Managing projects, client relationships, and business operations."
     },
     {
-      year: "2021",
+      year: "2021 - 2024",
+      position: "Team Lead & Manager",
+      company: "Firnas.tech",
+      description: "Led development teams, managed project timelines, and ensured quality delivery. Guided junior developers and coordinated with clients."
+    },
+    {
+      year: "2019 - 2021",
       position: "Full Stack Developer",
-      company: "Digital Solutions Ltd.",
-      description: "Developed and maintained multiple client websites and internal tools using React and Node.js."
+      company: "Software Development",
+      description: "Built web applications using React, Node.js, and modern technologies. Worked on multiple client projects from design to deployment."
     },
     {
-      year: "2019",
-      position: "Frontend Developer",
-      company: "Creative Web Agency",
-      description: "Created responsive, interactive user interfaces for various client projects."
-    },
-    {
-      year: "2018",
-      position: "Web Development Intern",
-      company: "Tech Startups Co.",
-      description: "Assisted in developing website features and learned industry best practices."
+      year: "2018 - 2019",
+      position: "Junior Developer",
+      company: "Tech Projects",
+      description: "Started my journey in web development. Learned best practices and gained experience in building real-world applications."
     }
   ];
   
   // Education history
   const education = [
     {
-      year: "2016 - 2018",
-      degree: "Master of Computer Science",
-      institution: "Tech University",
-      description: "Specialized in web technologies and software architecture."
+      year: "2020 - 2025",
+      degree: "Bachelor of Software Engineering",
+      institution: "COMSATS University Islamabad, Abbottabad Campus",
+      description: "Studied software engineering, programming, and computer science. Built strong foundation in modern technologies and software development."
     },
     {
-      year: "2012 - 2016",
-      degree: "Bachelor of Computer Science",
-      institution: "State University",
-      description: "Foundational studies in programming, algorithms, and data structures."
+      year: "2018 - 2020",
+      degree: "Web Development Course",
+      institution: "Online Learning Platform",
+      description: "Learned modern web development with HTML, CSS, JavaScript, React, and Node.js through practical projects."
     },
     {
-      year: "2010 - 2012",
-      degree: "Associate Degree in Web Design",
-      institution: "Community College",
-      description: "Early focus on HTML, CSS, and basic JavaScript applications."
+      year: "2017 - 2018",
+      degree: "Software Training",
+      institution: "Tech Institute",
+      description: "Started learning programming basics and got interested in building software and websites."
     }
   ];
   
   // Testimonials
   const testimonials = [
     {
-      text: "Working with this developer was an absolute pleasure. They delivered our project on time with exceptional quality and attention to detail.",
-      name: "Sarah Johnson",
-      position: "CEO at TechStart",
-      image: "/testimonial1.jpg"
+      text: "LogiNest delivered our project on time with great quality. Huzaifa and his team understood our needs and built exactly what we wanted. Highly recommended!",
+      name: "Imran",
+      position: "Product Owner, Australia",
+      image: "/imran.png"
     },
     {
-      text: "One of the most talented developers I've worked with. Their technical skills and problem-solving abilities are outstanding.",
-      name: "Michael Chen",
-      position: "CTO at WebSolutions",
-      image: "/testimonial2.jpg"
+      text: "Working with LogiNest on our Standard Financial Services (SFS) platform was excellent. They delivered a professional solution that exceeded our expectations. Highly skilled team!",
+      name: "Qutaiba",
+      position: "SFS Project Lead, UK",
+      image: "/Q.jpeg"
     },
     {
-      text: "Not only is their code clean and well-structured, but they also have a keen eye for design and user experience.",
-      name: "Emma Rodriguez",
-      position: "Product Manager",
+      text: "Huzaifa keeps great communication throughout the project. He responds quickly, explains everything clearly, and makes sure we're always updated. Easy to work with!",
+      name: "Omar Hassan",
+      position: "Tech Consultant",
       image: "/testimonial3.jpg"
     }
   ];
@@ -149,7 +149,7 @@ const About = () => {
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
               transition={{ delay: 0.2 }}
             >
-              Discover My Story
+              About LogiNest
             </motion.span>
             <motion.h2 
               className="text-4xl md:text-5xl font-bold mb-6 font-poppins tracking-tight"
@@ -157,7 +157,7 @@ const About = () => {
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
               transition={{ delay: 0.3 }}
             >
-              About <span className="gradient-text">Me</span>
+              Meet Our <span className="gradient-text">CEO</span>
             </motion.h2>
           </motion.div>
           
@@ -179,16 +179,16 @@ const About = () => {
                 {/* Main image */}
                 <div className="relative z-10 rounded-xl overflow-hidden shadow-2xl">
                   <img
-                    src="/about-image.jpg" // Add this image to your public folder
-                    alt="Professional portrait"
+                    src="/ceoimage/huz.png"
+                    alt="Huzaifa Sajjad - CEO & Team Lead at LogiNest"
                     className="w-full h-auto rounded-xl transform transition-transform duration-700 group-hover:scale-105"
                   />
                   
                   {/* Overlay gradient on hover */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                      <p className="font-bold text-xl">Your Name</p>
-                      <p>Full Stack Developer</p>
+                      <p className="font-bold text-xl">Huzaifa Sajjad</p>
+                      <p>CEO & Team Lead at LogiNest</p>
                     </div>
                   </div>
                 </div>
@@ -197,7 +197,7 @@ const About = () => {
                 <div className="absolute -right-5 top-1/4 bg-white dark:bg-gray-800 rounded-full shadow-xl p-4 z-20 transform transition-all duration-300 hover:scale-110">
                   <div className="bg-gradient-to-br from-primary to-secondary rounded-full w-16 h-16 flex items-center justify-center text-white">
                     <div className="text-center">
-                      <div className="text-xl font-bold">5+</div>
+                      <div className="text-xl font-bold">3+</div>
                       <div className="text-xs">Years</div>
                     </div>
                   </div>
@@ -290,26 +290,26 @@ const About = () => {
                       <h3 className="text-2xl font-bold mb-4 text-primary">My Journey</h3>
                       
                       <p className="text-lg mb-6">
-                        Hello! I'm <span className="font-bold text-primary">Your Name</span>, a passionate Full Stack Developer with over 5 years of experience in building web applications. I enjoy creating elegant solutions to complex problems.
+                        Hello! I'm <span className="font-bold text-primary">Huzaifa Sajjad</span>, the CEO and founder of LogiNest Software House. I lead a talented team that builds custom software solutions for businesses around the world.
                       </p>
                       
                       <p className="text-lg mb-6">
-                        My journey in web development began during college, and I've been continuously expanding my knowledge and expertise ever since. I specialize in JavaScript-based technologies with a focus on React, Next.js, and Node.js.
+                        I started my journey in web development 3+ years ago. I learned by building real projects and solving real problems. Now, I not only code but also manage teams, guide projects, and help clients turn their ideas into working software.
                       </p>
                       
                       <div className="grid md:grid-cols-2 gap-6 mb-6">
                         <div className="bg-gray-50 dark:bg-gray-700/40 p-6 rounded-xl">
-                          <h4 className="font-bold text-xl mb-2 text-gray-900 dark:text-white">Frontend Expertise</h4>
-                          <p>Crafting beautiful, responsive user interfaces with React, Vue, and modern CSS frameworks. Passionate about creating engaging user experiences that delight.</p>
+                          <h4 className="font-bold text-xl mb-2 text-gray-900 dark:text-white">Team Leadership</h4>
+                          <p>I lead and manage our development team at LogiNest. I guide developers, plan projects, and make sure we deliver quality work on time.</p>
                         </div>
                         <div className="bg-gray-50 dark:bg-gray-700/40 p-6 rounded-xl">
-                          <h4 className="font-bold text-xl mb-2 text-gray-900 dark:text-white">Backend Knowledge</h4>
-                          <p>Building robust server-side applications with Node.js, Express, and various databases. Creating secure, scalable API endpoints and services.</p>
+                          <h4 className="font-bold text-xl mb-2 text-gray-900 dark:text-white">Technical Skills</h4>
+                          <p>Expert in React, Next.js, Node.js, and modern web technologies. I build both the front-end and back-end of applications.</p>
                         </div>
                       </div>
                       
                       <p className="text-lg">
-                        When I'm not coding, you can find me hiking, reading about new technologies, or contributing to open-source projects. I'm always open to new opportunities and challenges that allow me to grow as a developer and create impactful digital experiences.
+                        At LogiNest, we believe in clear communication, quality work, and building long-term relationships with our clients. I'm always excited to take on new challenges and help businesses grow through technology.
                       </p>
                     </motion.div>
                   )}
@@ -383,31 +383,31 @@ const About = () => {
                       ))}
                       
                       <div className="mt-6 bg-gray-50 dark:bg-gray-700/30 p-6 rounded-xl">
-                        <h4 className="font-bold text-xl mb-3">Additional Certifications</h4>
+                        <h4 className="font-bold text-xl mb-3">Skills & Expertise</h4>
                         <div className="grid md:grid-cols-2 gap-4">
                           <div className="flex items-center">
                             <svg className="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
-                            <span>AWS Certified Developer</span>
+                            <span>Team Leadership & Management</span>
                           </div>
                           <div className="flex items-center">
                             <svg className="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
-                            <span>Google Cloud Professional</span>
+                            <span>Project Management</span>
                           </div>
                           <div className="flex items-center">
                             <svg className="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
-                            <span>React Advanced Concepts</span>
+                            <span>Full Stack Development</span>
                           </div>
                           <div className="flex items-center">
                             <svg className="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
-                            <span>Cybersecurity Fundamentals</span>
+                            <span>Client Communication</span>
                           </div>
                         </div>
                       </div>
