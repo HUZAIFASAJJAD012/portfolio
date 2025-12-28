@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import Image from 'next/image';
+// Image import removed (not used) to keep file clean
 
 const products = [
   {
@@ -118,87 +118,89 @@ export default function Products() {
             </p>
           </motion.div>
 
-          {/* Products Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {products.map((product) => (
-              <motion.div
-                key={product.id}
-                variants={itemVariants}
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 hover:border-primary dark:hover:border-primary transition-all duration-300"
-              >
-                {/* Product Image Placeholder */}
-                <div className="relative h-48 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10" />
-                  <span className="text-6xl font-bold text-primary/30">
-                    {product.name.charAt(0)}
-                  </span>
-                  {product.status === "Coming Soon" && (
-                    <div className="absolute top-4 right-4 bg-secondary text-white px-3 py-1 rounded-full text-sm font-medium">
-                      Coming Soon
-                    </div>
-                  )}
-                  {product.status === "Available" && (
-                    <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                      Available Now
-                    </div>
-                  )}
-                </div>
-
-                {/* Product Details */}
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">
-                    {product.name}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-4">
-                    {product.description}
+          {/* Products Grid or Coming Soon placeholder */}
+          {/** If there are no products or all products are marked as Coming Soon, show a themed placeholder. */}
+          {(
+            products.length === 0 || products.every((p) => (p.status || '').toLowerCase().includes('coming'))
+          ) ? (
+            <motion.div variants={itemVariants} className="py-20">
+              <div className="max-w-3xl mx-auto">
+                <div className="bg-gradient-to-r from-primary to-secondary text-white p-10 rounded-2xl shadow-lg text-center">
+                  <h3 className="text-3xl md:text-4xl font-bold mb-4">Products — Coming Soon</h3>
+                  <p className="text-white/90 mb-6">
+                    We're preparing an exciting lineup of products. Check back soon or reach out to be notified when we launch.
                   </p>
-
-                  {/* Features List */}
-                  <ul className="space-y-2 mb-6">
-                    {product.features.map((feature, index) => (
-                      <li key={index} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
-                        <svg
-                          className="w-5 h-5 text-primary flex-shrink-0 mt-0.5"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Price & CTA */}
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
-                    <div>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">Price</p>
-                      <p className="text-xl font-bold text-primary">{product.price}</p>
-                    </div>
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className={`px-6 py-3 rounded-lg font-medium transition-all ${
-                        product.status === "Available"
-                          ? "bg-gradient-to-r from-primary to-secondary text-white hover:shadow-lg"
-                          : "bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed"
-                      }`}
-                      disabled={product.status !== "Available"}
-                    >
-                      {product.status === "Available" ? "Learn More" : "Coming Soon"}
-                    </motion.button>
-                  </div>
+                  <a
+                    href="#contact"
+                    className="inline-block bg-white text-primary px-6 py-3 rounded-lg font-medium hover:shadow-lg transition-all"
+                  >
+                    Contact Us
+                  </a>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+            </motion.div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {products.map((product) => (
+                <motion.div
+                  key={product.id}
+                  variants={itemVariants}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 hover:border-primary dark:hover:border-primary transition-all duration-300"
+                >
+                  {/* Product Image Placeholder */}
+                  <div className="relative h-48 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10" />
+                    <span className="text-6xl font-bold text-primary/30">{product.name.charAt(0)}</span>
+                    {product.status === "Coming Soon" && (
+                      <div className="absolute top-4 right-4 bg-secondary text-white px-3 py-1 rounded-full text-sm font-medium">Coming Soon</div>
+                    )}
+                    {product.status === "Available" && (
+                      <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">Available Now</div>
+                    )}
+                  </div>
+
+                  {/* Product Details */}
+                  <div className="p-6">
+                    <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">{product.name}</h3>
+                    <p className="text-gray-600 dark:text-gray-400 mb-4">{product.description}</p>
+
+                    {/* Features List */}
+                    <ul className="space-y-2 mb-6">
+                      {product.features.map((feature, index) => (
+                        <li key={index} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
+                          <svg className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Price & CTA */}
+                    <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                      <div>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">Price</p>
+                        <p className="text-xl font-bold text-primary">{product.price}</p>
+                      </div>
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={`px-6 py-3 rounded-lg font-medium transition-all ${
+                          product.status === "Available"
+                            ? "bg-gradient-to-r from-primary to-secondary text-white hover:shadow-lg"
+                            : "bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed"
+                        }`}
+                        disabled={product.status !== "Available"}
+                      >
+                        {product.status === "Available" ? "Learn More" : "Coming Soon"}
+                      </motion.button>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          )}
 
           {/* Bottom CTA */}
           <motion.div 
