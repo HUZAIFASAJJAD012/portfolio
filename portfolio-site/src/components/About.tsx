@@ -3,7 +3,6 @@
 import { useState, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import TeamSection from './TeamSection';
 
 const About = () => {
   const [ref, inView] = useInView({
@@ -472,7 +471,6 @@ const About = () => {
           </div>
         </motion.div>
       </div>
-      <TeamSection />
     </section>
   );
 };

@@ -170,7 +170,7 @@ const Footer = () => {
                 animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                 transition={{ duration: 0.5 }}
               >
-                <span className="gradient-text">Your Name</span>
+                <span className="gradient-text">LogiNest</span>
               </motion.h3>
               <motion.p 
                 className="text-gray-600 dark:text-gray-300 mb-6 max-w-md text-lg"
@@ -466,7 +466,7 @@ const Footer = () => {
               }}
             >
               <p className="text-center sm:text-left text-gray-500 text-sm mb-4 sm:mb-0">
-                © {currentYear} <span className="text-white">Your Name</span>. All rights reserved. Designed and Built with <span className="text-red-500">♥</span>
+                © {currentYear} <span className="text-white">LogiNest</span>. All rights reserved. Designed and Built with <span className="text-red-500">♥</span>
               </p>
               
               <div className="flex items-center space-x-4">

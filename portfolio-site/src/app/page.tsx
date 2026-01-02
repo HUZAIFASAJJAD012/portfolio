@@ -59,7 +59,7 @@ export default function Home() {
 
   return (
     <main>
-      <Header />
+      
       <Hero />
         <Process />
     
@@ -67,7 +67,7 @@ export default function Home() {
       <Products />
       <Projects />
       <Contact />
-      <Footer />
+      
       <SocialLinks />
     </main>
   );

@@ -4,6 +4,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import DarkModeToggle from './DarkModeToggle';
+import Link from 'next/link';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -97,13 +98,14 @@ const Header = () => {
 
   // Navigation items
   const navItems = [
-    { name: 'Home', href: '#hero' },
-    { name: 'About', href: '#about' },
-    { name: 'Products', href: '#products' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'All Projects', href: '/projects', isExternal: true },
-    { name: 'Contact', href: '#contact' },
-  ];
+  { name: 'Home', href: '/#hero' },
+  { name: 'About', href: '/#about' },
+  { name: 'Team', href: '/team' },
+  { name: 'Products', href: '/products' },
+  { name: 'Projects', href: '/#projects' },
+  { name: 'All Projects', href: '/projects' },
+  { name: 'Contact', href: '/#contact' },
+];
 
   return (
     <motion.header 
@@ -130,7 +132,7 @@ const Header = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <a href="#hero" className="gradient-text flex items-center">
+          <Link href="#hero" className="gradient-text flex items-center">
             <span className="relative">
               Portfolio
               <motion.span 
@@ -147,7 +149,7 @@ const Header = () => {
             >
               LogiNest
             </motion.span>
-          </a>
+          </Link>
         </motion.div>
         
         {/* Desktop Navigation with active indicators */}
@@ -160,7 +162,7 @@ const Header = () => {
                 whileHover={{ scale: 1.08 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <a 
+                <Link 
                   href={item.href}
                   className={`font-medium transition-colors duration-300 px-3 py-2 rounded-lg flex items-center
                     ${activeSection === item.href.substring(1) 
@@ -174,7 +176,7 @@ const Header = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
                   )}
-                </a>
+                </Link>
                 {activeSection === item.href.substring(1) && !item.isExternal && (
                   <motion.div 
                     layoutId="activeNavIndicator"
@@ -239,7 +241,7 @@ const Header = () => {
                   whileHover={{ backgroundColor: 'rgba(107, 33, 168, 0.1)' }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <a 
+                  <Link 
                     href={item.href}
                     className="py-3 px-6 font-medium flex items-center"
                     onClick={() => setMobileMenuOpen(false)}
@@ -256,7 +258,7 @@ const Header = () => {
                         className="ml-auto w-1.5 h-6 bg-primary rounded-full"
                       />
                     )}
-                  </a>
+                  </Link>
                 </motion.li>
               ))}
             </ul>
