@@ -153,6 +153,23 @@ const Projects = () => {
         "SEO optimized for Dutch market"
       ],
       completedAt: "2025-01-10"
+    },
+    {
+      id: 5,
+      title: "Shirka Noura Al Otaibi",
+      description: "Reliable Home Appliance Service, Maintenance, and Repair in Riyadh, Saudi Arabia.",
+      image: "/project/shirka.png",
+      category: "frontend",
+      technologies: ["Next.js", "ShadCN", "Tailwind CSS", "SEO", "TypeScript"],
+      demoLink: "https://www.shirka-noura.com/",
+      codeLink: "#",
+      longDescription: "A professional business website for Shirka Noura Al Otaibi, specializing in home appliance services. The site is built with Next.js to ensure high performance and SEO optimization. It highlights their reliable service, maintenance, and repair options for home appliances in Riyadh, Saudi Arabia.",
+      features: [
+        "Professional service showcase",
+        "Next.js for SEO optimization",
+        "Responsive design for all devices",
+      ],
+      completedAt: "2025-10-13"
     }
   ] as ProjectType[];
 

@@ -52,6 +52,42 @@ const AllProjects = () => {
       technologies: ["Next.js", "React", "Tailwind CSS", "SEO", "TypeScript"],
       demoLink: "https://sfs-website-3g5s.vercel.app/",
       completedAt: "2024-12-10"
+    },
+    {
+      id: 4,
+      title: "VanLock Security",
+      description: "Your trusted partner for vehicle security solutions, offering advanced anti-theft systems and GPS tracking.",
+      image: "/project/vanlock.png",
+      category: "frontend",
+      technologies: ["Next.js", "React", "Tailwind CSS", "SEO", "TypeScript"],
+      demoLink: "https://van-lock-website.vercel.app/",
+      
+      longDescription: "A professional business website for VanLock Security, specializing in vehicle security solutions. The site is built with Next.js to ensure high performance and SEO optimization. It highlights their advanced anti-theft systems, GPS tracking services, and installation options, providing customers with reliable information and easy contact methods to enhance their vehicle security.",
+      features: [
+        "Professional service showcase",
+        "Next.js for SEO optimization",
+        "Responsive design for all devices",
+        "Contact and inquiry forms",
+        "SEO optimized for Dutch market"
+      ],
+      completedAt: "2025-01-10"
+    },
+    {
+      id: 5,
+      title: "Shirka Noura Al Otaibi",
+      description: "Reliable Home Appliance Service, Maintenance, and Repair in Riyadh, Saudi Arabia.",
+      image: "/project/shirka.png",
+      category: "frontend",
+      technologies: ["Next.js", "ShadCN", "Tailwind CSS", "SEO", "TypeScript"],
+      demoLink: "https://www.shirka-noura.com/",
+      
+      longDescription: "A professional business website for Shirka Noura Al Otaibi, specializing in home appliance services. The site is built with Next.js to ensure high performance and SEO optimization. It highlights their reliable service, maintenance, and repair options for home appliances in Riyadh, Saudi Arabia.",
+      features: [
+        "Professional service showcase",
+        "Next.js for SEO optimization",
+        "Responsive design for all devices",
+      ],
+      completedAt: "2025-10-13"
     }
   ];
 
