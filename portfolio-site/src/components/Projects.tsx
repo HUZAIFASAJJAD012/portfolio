@@ -170,6 +170,24 @@ const Projects = () => {
         "Responsive design for all devices",
       ],
       completedAt: "2025-10-13"
+    },
+    
+    {
+      id: 6,
+      title: "Portfolio Website",
+      description: "Portfolio website made using Nuxt.js and framer motion and Tailwind css for a smooth and elegant deisgn composition",
+      image: "/project/mudasir.png",
+      category: "frontend",
+      technologies: ["Nuxt","UI/UX Design" ,"Frammer Motion", "Tailwind CSS", "SEO", "TypeScript"],
+      demoLink: "https://nuxt-portfolio-l83m.vercel.app/",
+      codeLink: "#",
+      longDescription: "A professional business website .",
+      features: [
+        "Professional service showcase",
+        "Next.js for SEO optimization",
+        "Responsive design for all devices",
+      ],
+      completedAt: "2026-01-03"
     }
   ] as ProjectType[];
 
