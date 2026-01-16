@@ -43,6 +43,12 @@ const teamMembers: TeamMember[] = [
     role: "Backend Developer",
     image: "/project/waleed.png",
     experience: "3+ years"
+  },
+  {
+    name: "Muneeb Bacha",
+    role: "Sales Team",
+    image: "/muneebbacha.png",
+    experience: "3+ years"
   }
 ];
 
